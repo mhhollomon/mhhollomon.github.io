@@ -23,7 +23,7 @@ github_username:  mhhollomon
 
 # Build settings
 markdown: kramdown
-remote-theme: rohanchandra/type-theme
+theme: minima
 plugins:
   - jekyll-feed
 
