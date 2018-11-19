@@ -23,18 +23,15 @@ github_username:  mhhollomon
 
 # Build settings
 markdown: kramdown
-theme: minima
+remote-theme: rohanchandra/type-theme
 plugins:
   - jekyll-feed
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+kramdown:
+   syntax_highlighter: rouge
+   syntax_highlighter_opts:
+      css_class: 'highlight'
+      span:
+         line_numbers: false
+      block:
+         line_numbers: true

@@ -4,14 +4,25 @@ title:  "My First Jekyll Post"
 date:   2018-11-18 20:46:52 +0000
 categories: jekyll update
 ---
-***A heading***
+Nothing to see here. Just a post I can use to play with the formatting.
+
+### A heading
+
 Just checking to be sure that markdown does its thing.
 
 ~~~~perl
+#GFM block
 if (this_works()) {
    $mark_happy = 1;
 }
 ~~~~
+
+{%highlight perl linenos%}
+#liquid block
+if (this_works()) {
+   $mark_happy = 1;
+}
+{% endhighlight %}
 
 Jekyll also offers powerful support for code snippets:
 
