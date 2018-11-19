@@ -18,6 +18,7 @@ In order to use the main browser, you need to coax the local webserver to listen
 As an example here is the command to make jekyll use the external interface.
 ~~~~
 jekyll serve --server `hostname -I`
+hugo server --bind `hostname -I`
 ~~~~
 
 To view the server, point the browser to
@@ -26,3 +27,26 @@ http://penguin.linux.test:<port>
 ~~~~
 
 ChromeOS points that synthetic domain to your Linux VM.
+
+## Configure the terminal
+
+While in the terminal hit `ctrl-shift-P`. This will bring up a browser tab with settings such a font and colors.
+
+## Force shutdown the VM
+
+In the browser, `Ctrl-At-T` to bring up `crosh` shell.
+
+Enter the command: `vmc stop termina`
+
+It will automatically restart when you start Terminal app.
+
+The default VM name is **termina**
+The default container is **penguin**
+
+## Access the distribution from crosh
+
+~~~
+Ctrl-Alt-T                                 # open crosh
+vsh termina                                # start the VM and get a command prompt
+lxc exec penguin -- /bin/login -f <userid> # start the container
+~~~
