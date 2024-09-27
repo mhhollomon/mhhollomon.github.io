@@ -6,3 +6,5 @@ _site/
 node_modules
 .pnp.cjs
 .pnp.loader.mjs
+
+build-web-deploy
