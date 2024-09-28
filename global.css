@@ -26,3 +26,7 @@
     height: 100px;
     padding : 0;
   }
+
+  .h-100px {
+    height : 100px;
+  }
