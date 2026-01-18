@@ -31,7 +31,7 @@
 
 }
 
-[data-bs-theme="dark"] {
+[data-theme="dark"] {
   --color-border: #777777;
   --border-color: #dee2e6;
   --fg-color: white;
@@ -65,9 +65,26 @@ svg {
   display: inline;
 }
 
-
 .d-none {
   display: none;
+}
+
+.btn {
+  border-radius: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-style: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: var(--border-radius);
+  border-color : var(--color-border);
+  border-width : 1px;
+  border-style: solid;
 }
 
 /*******************************************************
@@ -80,7 +97,7 @@ svg {
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-  padding-inline : 1rem;
+  padding-inline : 5vw
 }
 
 .hero-header__title {
@@ -114,8 +131,12 @@ svg {
   border-width : 1px;
   border-style: solid;
 
-  & span {
+  span {
     margin-inline-start : 0.2rem;
+
+    @media screen and (max-width: 600px) {
+      display : none;
+    }
   }
 
 }
@@ -158,4 +179,66 @@ svg {
   padding-inline : 1rem;
   margin-top : 3rem;
   margin-bottom : 3rem;
+
+  @media screen and (max-width: 600px) {
+    margin-top : 2rem;
+    margin-bottom : 2rem;
+  }
+}
+
+/*******************************************************
+ * Card Gallery
+ ******************************************************/
+
+ .card-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
+  margin-inline: auto;
+  max-width: 1200px;
+}
+
+.card {
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color);
+  color : var(--fg-color);
+  border-color : var(--color-border);
+  border-width : 1px;
+  border-style: solid;
+  /* I want all the cards in a row to be the same height */
+  height : 100%;
+  text-align: center;
+  p {
+    margin-inline : 1rem;
+  }
+}
+
+.card__title {
+  font-size: 1.5rem;
+  margin-bottom : 0.5rem;
+  width : 100%;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-color : var(--color-border);
+  border-width : 0 0 1px 0;
+  border-style: solid;
+  text-align: center;
+}
+
+.card__link {
+  padding : 0 1rem;
+  color: #fff;
+  text-decoration: none;
+  margin-top: auto;
+  margin-bottom: .25rem;
+  align-self: center;
+  width: fit-content;
 }

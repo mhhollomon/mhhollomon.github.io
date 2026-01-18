@@ -7,8 +7,5 @@
   },
   "devDependencies": {
     "vite": "^5.4.8"
-  },
-  "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
   }
 }

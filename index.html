@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="utf-8">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="global.css">
 
   <script>
-    /*!
+/*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
@@ -36,9 +36,9 @@
 
       const setTheme = theme => {
         if (theme === 'auto') {
-          document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+          document.documentElement.setAttribute('data-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
         } else {
-          document.documentElement.setAttribute('data-bs-theme', theme)
+          document.documentElement.setAttribute('data-theme', theme)
         }
       }
 
@@ -51,13 +51,13 @@
           return
         }
 
-        const themeSwitcherText = document.querySelector('#bd-theme-text')
+        const themeSwitcherText = document.querySelector('#theme-switcher__menu')
         const activeThemeIcon = document.querySelector('.theme-switcher__icon use')
-        const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+        const btnToActive = document.querySelector(`[data-theme-value="${theme}"]`)
         const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
         const checkToActive = btnToActive.querySelector('.theme-check-icon')
 
-        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+        document.querySelectorAll('[data-theme-value]').forEach(element => {
           element.classList.remove('active')
           element.setAttribute('aria-pressed', 'false')
 
@@ -69,7 +69,7 @@
         btnToActive.classList.add('active')
         btnToActive.setAttribute('aria-pressed', 'true')
         activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-        const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
+        const themeSwitcherLabel = `${themeSwitcherText.attributes['aria-label'].value} (${btnToActive.dataset.bsThemeValue})`
         themeSwitcher.setAttribute('aria-label', themeSwitcherLabel)
         checkToActive.classList.remove('d-none')
         checkToActive.classList.add('d-inline')
@@ -89,10 +89,10 @@
       window.addEventListener('DOMContentLoaded', () => {
         showActiveTheme(getPreferredTheme())
 
-        document.querySelectorAll('[data-bs-theme-value]')
+        document.querySelectorAll('[data-theme-value]')
           .forEach(toggle => {
             toggle.addEventListener('click', () => {
-              const theme = toggle.getAttribute('data-bs-theme-value')
+              const theme = toggle.getAttribute('data-theme-value')
               setStoredTheme(theme)
               setTheme(theme)
               showActiveTheme(theme, true)
@@ -141,7 +141,7 @@
     <img src="images/notes-logo.svg" height="40px" width="40px" alt="Almost Useful Logo" />
 
     <div class="hero-header__title">
-      <span class="text-black fs-1 p-3 p-md-4">Almost Useful</span>
+      <span>Almost Useful</span>
     </div>
 
     <div class="theme-switcher">
@@ -150,12 +150,12 @@
         <svg height="1rem" width="1rem" class="theme-switcher__icon">
           <use href="#circle-half"></use>
         </svg>
-        <span id="bd-theme-text">Change theme</span>
+        <span>Theme</span>
       </button>
-      <ul class="theme-switcher__menu" popover id="theme-switcher__menu" aria-labelledby="bd-theme-text">
+      <ul class="theme-switcher__menu" popover id="theme-switcher__menu" aria-label="Change visual theme">
         <li>
-          <button type="button" class="dropdown-item" popovertarget="theme-switcher__menu" popovertrigger="click"
-            popovertargetaction="hide" data-bs-theme-value="light" aria-pressed="false">
+          <button type="button" popovertarget="theme-switcher__menu" popovertrigger="click" popovertargetaction="hide"
+            data-theme-value="light" aria-pressed="false">
             <svg height="1rem" width="1rem">
               <use href="#sun-fill"></use>
             </svg>
@@ -166,8 +166,8 @@
           </button>
         </li>
         <li>
-          <button type="button" class="dropdown-item" popovertarget="theme-switcher__menu" popovertrigger="click"
-            popovertargetaction="hide" data-bs-theme-value="dark" aria-pressed="false">
+          <button type="button" popovertarget="theme-switcher__menu" popovertrigger="click" popovertargetaction="hide"
+            data-theme-value="dark" aria-pressed="false">
             <svg height="1rem" width="1rem">
               <use href="#moon-stars-fill"></use>
             </svg>
@@ -178,8 +178,8 @@
           </button>
         </li>
         <li>
-          <button type="button" class="dropdown-item active" popovertarget="theme-switcher__menu" popovertrigger="click"
-            popovertargetaction="hide" data-bs-theme-value="auto" aria-pressed="true">
+          <button type="button" class="active" popovertarget="theme-switcher__menu" popovertrigger="click"
+            popovertargetaction="hide" data-theme-value="auto" aria-pressed="true">
             <svg height="1rem" width="1rem">
               <use href="#circle-half"></use>
             </svg>
@@ -194,59 +194,43 @@
 
   </header>
 
-
+  <!------ CARD GALLERY -->
   <main>
-    <h2 class="main-title">Places to Go</h2>
+    <h1 class="main-title">Places to Go</h1>
 
-  <div class="row mt-5 mx-auto d-flex justify-content-center">
-    <div class="row align-center d-flex justify-content-center text-center">
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Random Chord Generator</h5>
-          <p>Generate random chord progressions and export as MIDI or MusicXML</p>
-          <a href="https://mhhollomon.github.io/RachGen" class="btn btn-primary">RachGen</a>
-        </div>
+    <div class="card-gallery">
+      <div class="card">
+        <div class="card__title">Random Chord Generator</div>
+        <p>Generate random chord progressions and export as MIDI or MusicXML.</p>
+        <a href="https://mhhollomon.github.io/RachGen" class="btn btn-primary card__link">RachGen</a>
       </div>
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Music Stuff</h5>
-          <p>Music Tools like: an Idea Generator, Learning Scales on an Electric Bass, and others</p>
-          <a href="https://mhhollomon.github.io/MusicStuff" class="btn btn-primary">MusicStuff</a>
-        </div>
+      <div class="card">
+        <div class="card__title">Music Stuff</div>
+        <p>Music Tools like: an Idea Generator, Learning Scales on an Electric Bass, and others</p>
+        <a href="https://mhhollomon.github.io/MusicStuff" class="btn btn-primary card__link">MusicStuff</a>
       </div>
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Tonal Drift</h5>
-          <p>Offical Website for the music of Tonal Drift</p>
-          <a href="https://tonaldrift.com/" class="btn btn-primary">Tonal Drift</a>
-        </div>
+      <div class="card">
+        <div class="card__title">Tonal Drift</div>
+        <p>Offical Website for the music of Tonal Drift</p>
+        <a href="https://tonaldrift.com/" class="btn btn-primary card__link">Tonal Drift</a>
+      </div>
+
+      <div class="card">
+        <div class="card__title">Cantus Firmus Generator</div>
+        <p>Generate random cantus firmus for conterpoint practice. Allows you to export to MIDI file.</p>
+        <a href="https://mhhollomon.github.io/cf-gen" class="btn btn-primary card__link">CF Gen</a>
+      </div>
+      <div class="card">
+        <div class="card__title">Common Chords</div>
+        <p>Compute the diatonic chords common between two keys.</p>
+        <a href="https://mhhollomon.github.io/common-chords" class="btn btn-primary card__link">Common Chords</a>
+      </div>
+      <div class="card">
+        <div class="card__title">Web Resources</div>
+        <p>Directory of websites about music, music theory, and vaguely related items.</p>
+        <a href="https://resources.tonaldrift.com/" class="btn btn-primary card__link">Web Resources</a>
       </div>
     </div>
-
-    <div class="row align-center d-flex justify-content-center text-center">
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Cantus Firmus Generator</h5>
-          <p>Generate random cantus firmus for conterpoint practice. Allow you to export to MIDI file.</p>
-          <a href="https://mhhollomon.github.io/cf-gen" class="btn btn-primary">CF Gen</a>
-        </div>
-      </div>
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Common Chords</h5>
-          <p>Compute the diatonic chords common between two keys.</p>
-          <a href="https://mhhollomon.github.io/common-chords" class="btn btn-primary">Common Chords</a>
-        </div>
-      </div>
-      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-        <div class="card-body">
-          <h5 class="card-title">Indie Directory</h5>
-          <p>Directory of websites for Indie Artist and Labels</p>
-          <a href="https://tonaldrift.com/links/indie-dir" class="btn btn-primary">Indie Directory</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   </main>
 

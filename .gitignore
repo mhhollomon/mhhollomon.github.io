@@ -1,10 +1,4 @@
-Gemfile.lock
-.sass-cache/
-_site/
 
-.yarn/
 node_modules
-.pnp.cjs
-.pnp.loader.mjs
-
 build-web-deploy
+dist

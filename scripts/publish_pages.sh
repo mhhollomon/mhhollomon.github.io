@@ -4,8 +4,8 @@
 OUTPUT_REPO_DIR=${HOME}/src/gh-pages/top-level
 
 # Build directory to be used - it will be wiped out if it exists
-BUILD_DIR=build-web-deploy
-
+#BUILD_DIR=build-web-deploy
+BUILD_DIR=dist
 #
 BASE_HREF='/'
 
