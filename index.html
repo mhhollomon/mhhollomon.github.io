@@ -19,88 +19,88 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  */
 
-(() => {
-  'use strict'
+    (() => {
+      'use strict'
 
-  const getStoredTheme = () => localStorage.getItem('theme')
-  const setStoredTheme = theme => localStorage.setItem('theme', theme)
+      const getStoredTheme = () => localStorage.getItem('theme')
+      const setStoredTheme = theme => localStorage.setItem('theme', theme)
 
-  const getPreferredTheme = () => {
-    const storedTheme = getStoredTheme()
-    if (storedTheme) {
-      return storedTheme
-    }
+      const getPreferredTheme = () => {
+        const storedTheme = getStoredTheme()
+        if (storedTheme) {
+          return storedTheme
+        }
 
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      }
 
-  const setTheme = theme => {
-    if (theme === 'auto') {
-      document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-    } else {
-      document.documentElement.setAttribute('data-bs-theme', theme)
-    }
-  }
+      const setTheme = theme => {
+        if (theme === 'auto') {
+          document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+        } else {
+          document.documentElement.setAttribute('data-bs-theme', theme)
+        }
+      }
 
-  setTheme(getPreferredTheme())
-
-  const showActiveTheme = (theme, focus = false) => {
-    const themeSwitcher = document.querySelector('#bd-theme')
-
-    if (!themeSwitcher) {
-      return
-    }
-
-    const themeSwitcherText = document.querySelector('#bd-theme-text')
-    const activeThemeIcon = document.querySelector('.theme-switcher__icon use')
-    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-    const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
-    const checkToActive = btnToActive.querySelector('.theme-check-icon')
-
-    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-      element.classList.remove('active')
-      element.setAttribute('aria-pressed', 'false')
-
-      const checkElement = element.querySelector('.theme-check-icon')
-      checkElement.classList.remove('d-inline')
-      checkElement.classList.add('d-none')
-    })
-
-    btnToActive.classList.add('active')
-    btnToActive.setAttribute('aria-pressed', 'true')
-    activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
-    themeSwitcher.setAttribute('aria-label', themeSwitcherLabel)
-    checkToActive.classList.remove('d-none')
-    checkToActive.classList.add('d-inline')
-
-    if (focus) {
-      themeSwitcher.focus()
-    }
-  }
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    const storedTheme = getStoredTheme()
-    if (storedTheme !== 'light' && storedTheme !== 'dark') {
       setTheme(getPreferredTheme())
-    }
-  })
 
-  window.addEventListener('DOMContentLoaded', () => {
-    showActiveTheme(getPreferredTheme())
+      const showActiveTheme = (theme, focus = false) => {
+        const themeSwitcher = document.querySelector('#bd-theme')
 
-    document.querySelectorAll('[data-bs-theme-value]')
-      .forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const theme = toggle.getAttribute('data-bs-theme-value')
-          setStoredTheme(theme)
-          setTheme(theme)
-          showActiveTheme(theme, true)
+        if (!themeSwitcher) {
+          return
+        }
+
+        const themeSwitcherText = document.querySelector('#bd-theme-text')
+        const activeThemeIcon = document.querySelector('.theme-switcher__icon use')
+        const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+        const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
+        const checkToActive = btnToActive.querySelector('.theme-check-icon')
+
+        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+          element.classList.remove('active')
+          element.setAttribute('aria-pressed', 'false')
+
+          const checkElement = element.querySelector('.theme-check-icon')
+          checkElement.classList.remove('d-inline')
+          checkElement.classList.add('d-none')
         })
-      })
-  })
 
-})()
+        btnToActive.classList.add('active')
+        btnToActive.setAttribute('aria-pressed', 'true')
+        activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+        const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
+        themeSwitcher.setAttribute('aria-label', themeSwitcherLabel)
+        checkToActive.classList.remove('d-none')
+        checkToActive.classList.add('d-inline')
+
+        if (focus) {
+          themeSwitcher.focus()
+        }
+      }
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const storedTheme = getStoredTheme()
+        if (storedTheme !== 'light' && storedTheme !== 'dark') {
+          setTheme(getPreferredTheme())
+        }
+      })
+
+      window.addEventListener('DOMContentLoaded', () => {
+        showActiveTheme(getPreferredTheme())
+
+        document.querySelectorAll('[data-bs-theme-value]')
+          .forEach(toggle => {
+            toggle.addEventListener('click', () => {
+              const theme = toggle.getAttribute('data-bs-theme-value')
+              setStoredTheme(theme)
+              setTheme(theme)
+              showActiveTheme(theme, true)
+            })
+          })
+      })
+
+    })()
   </script>
 
 </head>
@@ -109,147 +109,146 @@
 
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none svg-icon-tweaks">
     <symbol id="check2" viewBox="0 0 16 16">
-      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      <path
+        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+      </path>
     </symbol>
     <symbol id="circle-half" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
     </symbol>
     <symbol id="globe2" viewBox="0 0 16 16">
-      <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"></path>
+      <path
+        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z">
+      </path>
     </symbol>
     <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-      <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      <path
+        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+      </path>
+      <path
+        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+      </path>
     </symbol>
     <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      <path
+        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+      </path>
     </symbol>
   </svg>
 
   <header class="hero-header">
 
-      <img src="images/notes-logo.svg" height="40px" width="40px"
-        alt="Almost Useful Logo"/>
-    
-      <div class="hero-header__title">
-        <span class="text-black fs-1 p-3 p-md-4">Almost Useful</span>
-      </div>
+    <img src="images/notes-logo.svg" height="40px" width="40px" alt="Almost Useful Logo" />
 
-      <div class="theme-switcher">
-        <button class="theme-switcher__btn" id="bd-theme" type="button" 
-              popovertarget="theme-switcher__menu"
-              popovertrigger="click"
-              popovertargetaction="show"
-              aria-label="Toggle theme (auto)">
-          <svg height="1rem" width="1rem" class="theme-switcher__icon"><use href="#circle-half"></use></svg>
-          <span id="bd-theme-text">Change theme</span> 
-        </button>
-        <ul class="theme-switcher__menu" popover id="theme-switcher__menu" aria-labelledby="bd-theme-text">
-          <li>
-            <button type="button" class="dropdown-item" 
-              popovertarget="theme-switcher__menu"
-              popovertrigger="click"
-              popovertargetaction="hide"
-              data-bs-theme-value="light" 
-              aria-pressed="false">
-              <svg height="1rem" width="1rem"><use style:"color : white;" href="#sun-fill"></use></svg>
-              Light
-              <svg height="1rem" width="1rem" class="bi ms-auto d-none theme-check-icon"><use href="#check2"></use></svg>
-            </button>
-          </li>
-          <li>
-            <button type="button" class="dropdown-item" 
-              popovertarget="theme-switcher__menu"
-              popovertrigger="click"
-              popovertargetaction="hide"
-              data-bs-theme-value="dark" aria-pressed="false">
-              <svg height="1rem" width="1rem" class="bi me-2 opacity-75"><use href="#moon-stars-fill"></use></svg>
-              Dark
-              <svg height="1rem" width="1rem" class="bi ms-auto d-none theme-check-icon"><use href="#check2"></use></svg>
-            </button>
-          </li>
-          <li>
-            <button type="button" class="dropdown-item active" 
-              popovertarget="theme-switcher__menu"
-              popovertrigger="click"
-              popovertargetaction="hide"
-              data-bs-theme-value="auto" aria-pressed="true">
-              <svg height="1rem" width="1rem" class="bi me-2 opacity-75"><use href="#circle-half"></use></svg>
-              Auto
-              <svg height="1rem" width="1rem" class="bi ms-auto d-none theme-check-icon"><use href="#check2"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
+    <div class="hero-header__title">
+      <span class="text-black fs-1 p-3 p-md-4">Almost Useful</span>
+    </div>
+
+    <div class="theme-switcher">
+      <button class="theme-switcher__btn" id="bd-theme" type="button" popovertarget="theme-switcher__menu"
+        popovertrigger="click" popovertargetaction="toggle" aria-label="Toggle theme">
+        <svg height="1rem" width="1rem" class="theme-switcher__icon">
+          <use href="#circle-half"></use>
+        </svg>
+        <span id="bd-theme-text">Change theme</span>
+      </button>
+      <ul class="theme-switcher__menu" popover id="theme-switcher__menu" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item" popovertarget="theme-switcher__menu" popovertrigger="click"
+            popovertargetaction="hide" data-bs-theme-value="light" aria-pressed="false">
+            <svg height="1rem" width="1rem">
+              <use href="#sun-fill"></use>
+            </svg>
+            Light
+            <svg height="1rem" width="1rem" class="theme-check-icon">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item" popovertarget="theme-switcher__menu" popovertrigger="click"
+            popovertargetaction="hide" data-bs-theme-value="dark" aria-pressed="false">
+            <svg height="1rem" width="1rem">
+              <use href="#moon-stars-fill"></use>
+            </svg>
+            Dark
+            <svg height="1rem" width="1rem" class="theme-check-icon">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item active" popovertarget="theme-switcher__menu" popovertrigger="click"
+            popovertargetaction="hide" data-bs-theme-value="auto" aria-pressed="true">
+            <svg height="1rem" width="1rem">
+              <use href="#circle-half"></use>
+            </svg>
+            Auto
+            <svg height="1rem" width="1rem" class="theme-check-icon">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
 
   </header>
 
 
-  <div class="container-fluid gap-2 my-5">
+  <main>
+    <h2 class="main-title">Places to Go</h2>
 
-    <div class="row text-center">
-      <h2 class="col-12">Places to Go</h2>
-    </div>
-
-    <div class="row mt-5 mx-auto d-flex justify-content-center">
-      <div class="row align-center d-flex justify-content-center text-center">
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Random Chord Generator</h5>
-            <p>Generate random chord progressions and export as MIDI or MusicXML</p>
-            <a href="https://mhhollomon.github.io/RachGen" class="btn btn-primary">RachGen</a>
-          </div>
-        </div>
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Music Stuff</h5>
-            <p>Music Tools like: an Idea Generator, Learning Scales on an Electric Bass, and others</p>
-            <a href="https://mhhollomon.github.io/MusicStuff" class="btn btn-primary">MusicStuff</a>
-          </div>
-        </div>
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Tonal Drift</h5>
-            <p>Offical Website for the music of Tonal Drift</p>
-            <a href="https://tonaldrift.com/" class="btn btn-primary">Tonal Drift</a>
-          </div>
+  <div class="row mt-5 mx-auto d-flex justify-content-center">
+    <div class="row align-center d-flex justify-content-center text-center">
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Random Chord Generator</h5>
+          <p>Generate random chord progressions and export as MIDI or MusicXML</p>
+          <a href="https://mhhollomon.github.io/RachGen" class="btn btn-primary">RachGen</a>
         </div>
       </div>
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Music Stuff</h5>
+          <p>Music Tools like: an Idea Generator, Learning Scales on an Electric Bass, and others</p>
+          <a href="https://mhhollomon.github.io/MusicStuff" class="btn btn-primary">MusicStuff</a>
+        </div>
+      </div>
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Tonal Drift</h5>
+          <p>Offical Website for the music of Tonal Drift</p>
+          <a href="https://tonaldrift.com/" class="btn btn-primary">Tonal Drift</a>
+        </div>
+      </div>
+    </div>
 
-      <div class="row align-center d-flex justify-content-center text-center">
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Cantus Firmus Generator</h5>
-            <p>Generate random cantus firmus for conterpoint practice. Allow you to export to MIDI file.</p>
-            <a href="https://mhhollomon.github.io/cf-gen" class="btn btn-primary">CF Gen</a>
-          </div>
+    <div class="row align-center d-flex justify-content-center text-center">
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Cantus Firmus Generator</h5>
+          <p>Generate random cantus firmus for conterpoint practice. Allow you to export to MIDI file.</p>
+          <a href="https://mhhollomon.github.io/cf-gen" class="btn btn-primary">CF Gen</a>
         </div>
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Common Chords</h5>
-            <p>Compute the diatonic chords common between two keys.</p>
-            <a href="https://mhhollomon.github.io/common-chords" class="btn btn-primary">Common Chords</a>
-          </div>
+      </div>
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Common Chords</h5>
+          <p>Compute the diatonic chords common between two keys.</p>
+          <a href="https://mhhollomon.github.io/common-chords" class="btn btn-primary">Common Chords</a>
         </div>
-        <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Indie Directory</h5>
-            <p>Directory of websites for Indie Artist and Labels</p>
-            <a href="https://tonaldrift.com/links/indie-dir" class="btn btn-primary">Indie Directory</a>
-          </div>
+      </div>
+      <div class="card col-sm-12 col-md-3 ms-md-3 mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Indie Directory</h5>
+          <p>Directory of websites for Indie Artist and Labels</p>
+          <a href="https://tonaldrift.com/links/indie-dir" class="btn btn-primary">Indie Directory</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="my-5">
-    <p>&nbsp;</p>
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-    crossorigin="anonymous"></script>
+  </main>
 
 </body>
 
