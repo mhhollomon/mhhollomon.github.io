@@ -40,11 +40,14 @@
 
     p {
         margin-inline: 1rem;
+        margin-block-start: 0;
+        margin-block-end: 0.5rem;
     }
 }
 
 .card__title {
     font-size: 1.5rem;
+    font-weight : normal;
     margin-bottom: 0.5rem;
     margin-block-start: 0;
     width: 100%;
@@ -74,7 +77,9 @@
     border-style: solid;
 
     &:hover {
-        background-color: oklch(from green 100% 100% 100%);
+        --bg-hover-color: oklch(from var(--color-primary) calc(l + .3) c h);
+        background-color: var(--bg-hover-color);
+        color : contrast(var(--bg-hover-color));
     }
 
 }

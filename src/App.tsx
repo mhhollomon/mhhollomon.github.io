@@ -10,7 +10,8 @@ export default function App() {
   return (
     <>
         {/* This gets shifted up to the header by react */}
-        <title>{APP_NAME}</title>
+        <title>Almost Useful Stuff</title>
+
         <Header title={APP_NAME} avatar={logo} />
         <div className="title-block">
             <h1 className="title-block__title">Places To Go</h1>
@@ -20,7 +21,7 @@ export default function App() {
                 <div className="card" key={card.title}>
                     <h2 className="card__title">{card.title}</h2>
                     <p>{card.description}</p>
-                    <a className="card__link" href={card.link}>Learn more</a>
+                    <a className="card__link" href={card.link}>{card.link_text}</a>
                 </div>
             ))}
         </main>

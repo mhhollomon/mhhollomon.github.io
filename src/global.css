@@ -27,6 +27,7 @@
 body {
     background-color : var(--bg-color);
     color : var(--fg-color);
+    font-size : 120%;
 
     --border-std : 1px solid var(--border-color);
 }
