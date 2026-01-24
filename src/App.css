@@ -76,8 +76,9 @@
     border-width: 1px;
     border-style: solid;
 
-    &:hover {
-        --bg-hover-color: oklch(from var(--color-primary) calc(l + .3) c h);
+    &:hover,
+    &:focus-visible {
+        --bg-hover-color: oklab(from var(--color-primary) calc(l + .3) c h);
         background-color: var(--bg-hover-color);
         color : contrast(var(--bg-hover-color));
     }
