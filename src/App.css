@@ -1,0 +1,80 @@
+.title-block {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    text-align: center;
+}
+
+.title-block__title {
+    font-size: var(--font-size-h3);
+}
+
+.main {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1rem;
+    margin-inline: auto;
+    max-width: 1200px;
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    border-color: var(--color-border);
+    border-width: 1px;
+    border-style: solid;
+    /* I want all the cards in a row to be the same height */
+    height: 100%;
+    text-align: center;
+
+    p {
+        margin-inline: 1rem;
+    }
+}
+
+.card__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-block-start: 0;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: #fff;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    border-color: var(--border-color);
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    text-align: center;
+}
+
+.card__link {
+    padding: 0 1rem;
+    text-decoration: none;
+    margin-top: auto;
+    margin-bottom: .25rem;
+    align-self: center;
+    width: fit-content;
+
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: var(--border-radius);
+    border-color: var(--border-color);
+    border-width: 1px;
+    border-style: solid;
+
+    &:hover {
+        background-color: oklch(from green 100% 100% 100%);
+    }
+
+}
