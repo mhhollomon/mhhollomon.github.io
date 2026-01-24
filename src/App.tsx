@@ -11,6 +11,8 @@ export default function App() {
     <>
         {/* This gets shifted up to the header by react */}
         <title>Almost Useful Stuff</title>
+        <link rel="icon" type="image/svg+xml" href={logo} />
+
 
         <Header title={APP_NAME} avatar={logo} />
         <div className="title-block">
