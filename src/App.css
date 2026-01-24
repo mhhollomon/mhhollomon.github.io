@@ -78,7 +78,7 @@
 
     &:hover,
     &:focus-visible {
-        --bg-hover-color: oklab(from var(--color-primary) calc(l + .3) c h);
+        --bg-hover-color: oklab(from var(--color-primary) calc(l + .4) a b);
         background-color: var(--bg-hover-color);
         color : contrast(var(--bg-hover-color));
     }

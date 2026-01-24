@@ -4,8 +4,8 @@
 OUTPUT_REPO_DIR=${HOME}/src/gh-pages/top-level
 
 # Build directory to be used - it will be wiped out if it exists
-#BUILD_DIR=build-web-deploy
-BUILD_DIR=dist
+BUILD_DIR=build-web-deploy
+
 #
 BASE_HREF='/'
 
@@ -18,7 +18,7 @@ echo "Building web app"
 echo "####################################################################"
 
 rm -rf ${BUILD_DIR};
-npm run build # --outDir ${BUILD_DIR} --base ${BASE_HREF}
+npm run build -- --outDir ${BUILD_DIR} --base ${BASE_HREF}
 
 if [ ! -e  ${BUILD_DIR}/index.html ]; then
     echo "Can't find the web files. Something went wrong"
@@ -45,5 +45,6 @@ echo "####################################################################"
 
 echo "####################################################################"
 echo "Check git status above and commit/push if everything looks okay"
+echo " cd ${OUTPUT_REPO_DIR}"
 echo "####################################################################"
 
